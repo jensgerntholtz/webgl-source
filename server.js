@@ -6,11 +6,16 @@
 // Then simply run "node server" from the command line in this directory
 // at that point you can view the demo by visiting http://localhost:900/index.html
 
-var express = require('express');
+const express = require('express');
+const serveStatic = require("serve-static");
+const serveIndex = require("serve-index");
 
-var app = express.createServer();
-app.use(express.static(__dirname));
-app.use(express.directory(__dirname));
-app.listen(9000);
+const app = express();
+const port = 9000;
+
+app.use(serveStatic(__dirname));
+app.use(serveIndex(__dirname));
+
+app.listen(port);
 
 console.log('Server is now listening on port 9000');
